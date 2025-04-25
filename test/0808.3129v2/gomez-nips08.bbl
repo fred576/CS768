@@ -1,0 +1,88 @@
+\begin{thebibliography}{10}
+
+\bibitem{Bak}
+P.~Bak.
+\newblock {\em How nature works: The Science of Self-Organized Criticality}.
+\newblock Springer, 1996.
+
+\bibitem{Beggs03}
+J.~M. Beggs and D.~Plenz.
+\newblock Neuronal avalanches in neocortical circuits.
+\newblock {\em Journal of Neuroscience}, 23(35):11167--11177, December 2003.
+
+\bibitem{Bertschinger}
+N.~{Bertschinger}, T.~{Natschl\"ager}, and R.~A. {Legenstein}.
+\newblock At the edge of chaos: Real-time computations and self-organized
+  criticality in recurrent neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems 17}, pages
+  145--152. MIT Press, Cambridge, MA, 2005.
+
+\bibitem{BiP98}
+G.~Q. Bi and M.~M. Poo.
+\newblock Synaptic modifications in cultured hippocampal neurons: Dependence on
+  spike timing, synaptic strength, and postsynaptic cell type.
+\newblock {\em Journal Of Neuroscience}, 18:10464--10472, 1998.
+
+\bibitem{GERSTEIN64}
+G.~L. Gerstein and B.~Mandelbrot.
+\newblock Random walk models for the spike activity of a single neuron.
+\newblock {\em Biophys J.}, 4:41--68, 1964.
+
+\bibitem{gomez2006}
+V.~G\'omez, A.~Kaltenbrunner, and V.~L\'opez.
+\newblock Event modeling of message interchange in stochastic neural ensembles.
+\newblock In {\em IJCNN'06, Vancouver, BC, Canada}, pages 81--88, 2006.
+
+\bibitem{Kaltenbrunner2007NECO}
+A.~Kaltenbrunner, V.~G\'omez, and V.~L\'opez.
+\newblock Phase transition and hysteresis in an ensemble of stochastic spiking
+  neurons.
+\newblock {\em Neural Computation}, 19(11):3011--3050, 2007.
+
+\bibitem{Kinouch2006}
+O.~Kinouchi and M.~Copelli.
+\newblock Optimal dynamical range of excitable networks at criticality.
+\newblock {\em Nature Physics}, 2:348, 2006.
+
+\bibitem{Langton}
+C.~G. {Langton}.
+\newblock {Computation at the edge of chaos: Phase transitions and emergent
+  computation}.
+\newblock {\em Physica D Nonlinear Phenomena}, 42:12--37, jun 1990.
+
+\bibitem{Levina07}
+A.~Levina, J.~M. Herrmann, and T.~Geisel.
+\newblock Dynamical synapses causing self-organized criticality in neural
+  networks.
+\newblock {\em Nature Physics}, 3(12):857--860, 2007.
+
+\bibitem{Packard}
+N.~H. Packard.
+\newblock {\em Adaptation toward the edge of chaos. In: Dynamics Patterns in
+  Complex Systems}, pages 293--301.
+\newblock World Scientific: Singapore, 1988.
+\newblock A. J. Mandell, J. A. S. Kelso, and M. F. Shlesinger, editors.
+
+\bibitem{RODR01}
+F.~Rodr\'{\i}guez, A.~Su\'{a}rez, and V.~L\'{o}pez.
+\newblock Period focusing induced by network feedback in populations of noisy
+  integrate-and-fire neurons.
+\newblock {\em Neural Computation}, 13(11):2495--2516, 2001.
+
+\bibitem{SongMA00}
+S.~Song, K.~D. Miller, and L.~F. Abbott.
+\newblock Competitive hebbian learning through spike-timing-dependent synaptic
+  plasticity.
+\newblock {\em Nature Neuroscience}, 3(9):919--926, 2000.
+
+\bibitem{Turrigiano}
+G.~G. Turrigiano and S.~B. Nelson.
+\newblock Homeostatic plasticity in the developing nervous system.
+\newblock {\em Nature Reviews Neuroscience}, 5(2):97--107, 2004.
+
+\bibitem{VanvreeswijkA93}
+C.~Van Vreeswijk and L.~F. Abbott.
+\newblock Self-sustained firing in populations of integrate-and-fire neurons.
+\newblock {\em SIAM J. Appl. Math.}, 53(1):253--264, 1993.
+
+\end{thebibliography}
