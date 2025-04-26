@@ -1,2 +1,3 @@
-dataset_papers/
-parsed_citations.json
+assignment/dataset_papers/
+assignment/dataset_papers.tar.gz
+assignment/parsed_citations.json
