@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import torch_geometric
 from torch_geometric.data import DataLoader, Data
 from torch_geometric.datasets import TUDataset
-from torch_geometric.utils import subgraph, to_dense_adj, to_dense_batch, graclus
+from torch_geometric.utils import subgraph, to_dense_adj, to_dense_batch
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
