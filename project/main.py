@@ -1,4 +1,4 @@
-from model import GNNGlobal, GNNTopK, GNNSAG, GNNDiffPool, GNNGlobalAttention, GNNSet2Set
+from model import GNNGlobal, GNNTopK, GNNSAG, GNNDiffPool, GNNGlobalAttention, GNNSet2Set, GNNDMoN, GNNECPool, GNNMinCut
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
 import torch
@@ -6,7 +6,7 @@ import torch.nn.functional as F
 # -----------------------------------------------------------------------------
 # Looping over different datasets
 # for name in ['MUTAG','PROTEINS','ENZYMES']:
-for name in ['MUTAG']:
+for name in ['MUTAG', 'PROTEINS', 'ENZYMES']:
     # -----------------------------------------------------------------------------
     # 2. Data Loading & Preparation
     # -----------------------------------------------------------------------------
@@ -73,14 +73,17 @@ for name in ['MUTAG']:
     # Define different GNN variants to compare
     variants = {
         # 'no-pool':     GNNGlobal(in_feats, hidden_dim, num_classes, pool='none'),
-        'global-att':  GNNGlobalAttention(in_feats, hidden_dim, num_classes),
-        'set2set':     GNNSet2Set(in_feats, hidden_dim, num_classes),
-        'global-mean': GNNGlobal(in_feats, hidden_dim, num_classes, pool='mean'),
-        'global-sum':  GNNGlobal(in_feats, hidden_dim, num_classes, pool='sum'),
-        'global-max':  GNNGlobal(in_feats, hidden_dim, num_classes, pool='max'),
-        'topk':        GNNTopK(in_feats, hidden_dim, num_classes),
-        'sag':         GNNSAG(in_feats, hidden_dim, num_classes, ratio=0.5),
-        'diff':        GNNDiffPool(in_feats, assign_dim=hidden_dim, k=30, num_classes=num_classes)
+        # 'global-max':  GNNGlobal(in_feats, hidden_dim, num_classes, pool='max'),
+        'dmon':          GNNDMoN(in_feats, hidden_dim, num_classes, k=10, dropout=0.2),
+        'ecpool':        GNNECPool(in_feats, hidden_dim, num_classes, ratio=0.5),
+        'mincut':        GNNMinCut(in_feats, hidden_dim, num_classes, k=10, temp = 1.0),
+        # 'global-att':  GNNGlobalAttention(in_feats, hidden_dim, num_classes),
+        # 'set2set':     GNNSet2Set(in_feats, hidden_dim, num_classes),
+        # 'global-mean': GNNGlobal(in_feats, hidden_dim, num_classes, pool='mean'),
+        # 'global-sum':  GNNGlobal(in_feats, hidden_dim, num_classes, pool='sum'),
+        # 'topk':        GNNTopK(in_feats, hidden_dim, num_classes),
+        # 'sag':         GNNSAG(in_feats, hidden_dim, num_classes, ratio=0.5),
+        # 'diff':        GNNDiffPool(in_feats, assign_dim=hidden_dim, k=30, num_classes=num_classes)
     }
 
     # Train & evaluate each variant for 100 epochs

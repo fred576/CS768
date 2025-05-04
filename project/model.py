@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch_geometric
-from torch_geometric.data import DataLoader
+from torch_geometric.data import DataLoader, Data
 from torch_geometric.datasets import TUDataset
 from torch_geometric.utils import subgraph, to_dense_adj, to_dense_batch
 import torch
@@ -10,8 +10,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch_geometric.nn import (
     GCNConv, global_mean_pool, global_add_pool, global_max_pool,
-    TopKPooling, SAGPooling, GlobalAttention, Set2Set, 
+    TopKPooling, SAGPooling, GlobalAttention, Set2Set, EdgePooling, max_pool
 )
+from utils import negative_edges, batched_negative_edges
+from torch_geometric.nn.dense import DMoNPooling, dense_mincut_pool
 # -----------------------------------------------------------------------------
 # 1. Model Definitions
 # -----------------------------------------------------------------------------
@@ -211,3 +213,98 @@ class GNNSet2Set(nn.Module):
         out = self.set2set(x, batch)
         out = F.relu(self.lin1(out))
         return self.lin2(out)
+
+class GNNGraclus(nn.Module):
+    def __init__(self, in_feats, hidden_dim, num_classes):
+        super().__init__()
+        self.conv1 = GCNConv(in_feats, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.lin = nn.Linear(hidden_dim, num_classes)
+
+    def forward(self, x, edge_index, batch):
+        x = F.relu(self.conv1(x, edge_index))
+        cluster = graclus(edge_index, weight=None, num_nodes=x.size(0))
+        data = Data(x=x, edge_index=edge_index, batch=batch)
+        pooled = max_pool(cluster, data)
+        x, edge_index, batch = pooled.x, pooled.edge_index, pooled.batch
+        x = F.relu(self.conv2(x, edge_index))
+        out = global_mean_pool(x, batch)
+        return self.lin(out)
+    
+class GNNDMoN(nn.Module):
+    def __init__(self, in_feats, hidden_dim, num_classes, k, dropout=0.0):
+        super().__init__()
+        # Two GCN layers for embeddings
+        self.conv1 = GCNConv(in_feats, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        # DMoNPooling: channels=list of input dims, k clusters, dropout
+        self.dmon = DMoNPooling([hidden_dim], k, dropout)
+        # Final classifier
+        self.lin = nn.Linear(hidden_dim, num_classes)
+
+    def forward(self, x, edge_index, batch):
+        # 1) Compute node embeddings
+        x = F.relu(self.conv1(x, edge_index))
+        x = F.relu(self.conv2(x, edge_index))
+        # 2) Convert to dense formats
+        X_batch, mask = to_dense_batch(x, batch)        # [B, N_max, H]
+        A_batch = to_dense_adj(edge_index, batch)       # [B, N_max, N_max]
+        # 3) DMoN pooling
+        S, Xp, Ap, loss_s, loss_o, loss_c = self.dmon(X_batch, A_batch)
+        # 4) Readout: mean over clusters
+        out = Xp.mean(dim=1)                            # [B, H]
+        # 5) Classification
+        logits = self.lin(out)
+        # Return logits and DMoN losses for regularization
+        return logits
+    
+class GNNECPool(nn.Module):
+    def __init__(self, in_feats, hidden_dim, num_classes, ratio=0.5):
+        super().__init__()
+        self.conv1 = GCNConv(in_feats, hidden_dim)
+        self.ec_pool = EdgePooling(hidden_dim, dropout = 1.0 - ratio)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.lin = nn.Linear(hidden_dim, num_classes)
+
+    def forward(self, x, edge_index, batch):
+        x = F.relu(self.conv1(x, edge_index))
+        x, edge_index, batch, _ = self.ec_pool(x, edge_index, batch)
+        x = F.relu(self.conv2(x, edge_index))
+        out = global_mean_pool(x, batch)
+        return self.lin(out)
+
+"""
+    GCN + MinCut Pooling + GCN + global mean pooling
+"""
+class GNNMinCut(nn.Module):
+    def __init__(self, in_feats, hidden_dim, num_classes,
+                 k=30,      # number of clusters
+                 temp=1.0   # softmax temperature
+                ):
+        super().__init__()
+        # GCN for feature embedding
+        self.conv1 = GCNConv(in_feats, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        # Assignment conv
+        self.assign_conv = GCNConv(hidden_dim, k)
+        self.lin = nn.Linear(hidden_dim, num_classes)
+        self.k = k
+        self.temp = temp
+
+    def forward(self, x, edge_index, batch):
+        # 1) Embed
+        x = F.relu(self.conv1(x, edge_index))
+        x = F.relu(self.conv2(x, edge_index))
+        # 2) Dense formats
+        X_batch, mask = to_dense_batch(x, batch)        # [B, N_max, H]
+        A_batch = to_dense_adj(edge_index, batch)       # [B, N_max, N_max]
+        # 3) Compute assignments
+        S = self.assign_conv(x, edge_index)             # [N_total, k]
+        S_batch, _ = to_dense_batch(S, batch)           # [B, N_max, k]
+        # 4) MinCut pooling
+        Xp, Ap, mincut_loss, ortho_loss = dense_mincut_pool(
+            X_batch, A_batch, S_batch, mask, temp=self.temp)
+        # 5) Readout & classify
+        out = Xp.mean(dim=1)                            # [B, H]
+        logits = self.lin(out)
+        return logits
