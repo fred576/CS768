@@ -1,0 +1,3 @@
+pool,dataset,s/epoch,memory_MB,accuracy
+dmon,MUTAG,0.0518,18.68,0.9211
+ecpool,MUTAG,0.1326,18.67,0.8421
