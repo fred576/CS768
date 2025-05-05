@@ -1,0 +1,35 @@
+
+    variants = {
+        'dmon':          GNNDMoN(dataset.num_features, 64, dataset.num_classes, k=16, dropout=0.2),
+        'ecpool':        GNNECPool(dataset.num_features, 64, dataset.num_classes, ratio=0.8),
+        # 'mincut':        GNNMinCut(dataset.num_features, 64, dataset.num_classes, k=10, temp = 1.0),
+        'set2set':     GNNSet2Set(dataset.num_features, 64, dataset.num_classes, 3),
+        'topk':        GNNTopK(dataset.num_features, 64, dataset.num_classes, 0.3),
+        'sag':         GNNSAG(dataset.num_features, 64, dataset.num_classes, ratio=0.9),
+        'diff':        GNNDiffPool(dataset.num_features, assign_dim=64, k=19, num_classes=dataset.num_classes)
+    }
+
+variants = {
+        'dmon':          GNNDMoN(dataset.num_features, 64, dataset.num_classes, k=18, dropout=0.2),
+        'ecpool':        GNNECPool(dataset.num_features, 64, dataset.num_classes, ratio=0.6),
+        # 'mincut':        GNNMinCut(dataset.num_features, 64, dataset.num_classes, k=10, temp = 1.0),
+        'set2set':     GNNSet2Set(dataset.num_features, 64, dataset.num_classes, 16),
+        'topk':        GNNTopK(dataset.num_features, 64, dataset.num_classes, 0.4),
+        'sag':         GNNSAG(dataset.num_features, 64, dataset.num_classes, ratio=0.9),
+        'diff':        GNNDiffPool(dataset.num_features, assign_dim=64, k=19, num_classes=dataset.num_classes)
+    }
+
+
+
+    variants = {
+        'dmon':          GNNDMoN(dataset.num_features, 64, dataset.num_classes, k=11, dropout=0.2),
+        'ecpool':        GNNECPool(dataset.num_features, 64, dataset.num_classes, ratio=0.1),
+        # 'mincut':        GNNMinCut(dataset.num_features, 64, dataset.num_classes, k=10, temp = 1.0),
+        'set2set':     GNNSet2Set(dataset.num_features, 64, dataset.num_classes, 3),
+        'topk':        GNNTopK(dataset.num_features, 64, dataset.num_classes, 0.4),
+        'sag':         GNNSAG(dataset.num_features, 64, dataset.num_classes, ratio=0.8),
+        'diff':        GNNDiffPool(dataset.num_features, assign_dim=64, k=11, num_classes=dataset.num_classes)
+    }
+
+
+
