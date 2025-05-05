@@ -1,0 +1,90 @@
+/home/utkarsh/miniconda3/envs/aiml/lib/python3.7/site-packages/torch_geometric/deprecation.py:22: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+Using device: cpu
+Dataset: MUTAG, Number of classes: 2, Number of features: 7
+For MUTAG dataset with ratio =0.1:
+k=0.1, test acc: 0.7894736842105263, time/epoch: 0.0191s
+For MUTAG dataset with ratio =0.2:
+k=0.2, test acc: 0.8421052631578947, time/epoch: 0.0306s
+For MUTAG dataset with ratio =0.3:
+k=0.3, test acc: 0.868421052631579, time/epoch: 0.0334s
+For MUTAG dataset with ratio =0.4:
+k=0.4, test acc: 0.8421052631578947, time/epoch: 0.0181s
+For MUTAG dataset with ratio =0.5:
+k=0.5, test acc: 0.8421052631578947, time/epoch: 0.0331s
+For MUTAG dataset with ratio =0.6:
+k=0.6, test acc: 0.8157894736842105, time/epoch: 0.0346s
+For MUTAG dataset with ratio =0.7:
+k=0.7, test acc: 0.8421052631578947, time/epoch: 0.0359s
+For MUTAG dataset with ratio =0.8:
+k=0.8, test acc: 0.8421052631578947, time/epoch: 0.0364s
+For MUTAG dataset with ratio =0.9:
+k=0.9, test acc: 0.8421052631578947, time/epoch: 0.0184s
+Using device: cpu
+Dataset: PROTEINS, Number of classes: 2, Number of features: 3
+For PROTEINS dataset with ratio =0.1:
+k=0.1, test acc: 0.695067264573991, time/epoch: 0.1311s
+For PROTEINS dataset with ratio =0.2:
+k=0.2, test acc: 0.6322869955156951, time/epoch: 0.2255s
+For PROTEINS dataset with ratio =0.3:
+k=0.3, test acc: 0.6860986547085202, time/epoch: 0.1464s
+For PROTEINS dataset with ratio =0.4:
+k=0.4, test acc: 0.7354260089686099, time/epoch: 0.1509s
+For PROTEINS dataset with ratio =0.5:
+k=0.5, test acc: 0.672645739910314, time/epoch: 0.1587s
+For PROTEINS dataset with ratio =0.6:
+k=0.6, test acc: 0.7040358744394619, time/epoch: 0.1556s
+For PROTEINS dataset with ratio =0.7:
+k=0.7, test acc: 0.7040358744394619, time/epoch: 0.1443s
+For PROTEINS dataset with ratio =0.8:
+k=0.8, test acc: 0.7174887892376681, time/epoch: 0.1437s
+For PROTEINS dataset with ratio =0.9:
+k=0.9, test acc: 0.7174887892376681, time/epoch: 0.1487s
+Using device: cpu
+Dataset: ENZYMES, Number of classes: 6, Number of features: 3
+For ENZYMES dataset with ratio =0.1:
+k=0.1, test acc: 0.26666666666666666, time/epoch: 0.1102s
+For ENZYMES dataset with ratio =0.2:
+k=0.2, test acc: 0.26666666666666666, time/epoch: 0.0627s
+For ENZYMES dataset with ratio =0.3:
+k=0.3, test acc: 0.26666666666666666, time/epoch: 0.0636s
+For ENZYMES dataset with ratio =0.4:
+k=0.4, test acc: 0.35, time/epoch: 0.0662s
+For ENZYMES dataset with ratio =0.5:
+k=0.5, test acc: 0.26666666666666666, time/epoch: 0.0752s
+For ENZYMES dataset with ratio =0.6:
+k=0.6, test acc: 0.275, time/epoch: 0.1193s
+For ENZYMES dataset with ratio =0.7:
+k=0.7, test acc: 0.30833333333333335, time/epoch: 0.0873s
+For ENZYMES dataset with ratio =0.8:
+k=0.8, test acc: 0.325, time/epoch: 0.1268s
+For ENZYMES dataset with ratio =0.9:
+k=0.9, test acc: 0.2916666666666667, time/epoch: 0.1329s
+      k   dataset  s/epoch memory_MB  accuracy
+0   0.1     MUTAG   0.0191       N/A    0.7895
+1   0.2     MUTAG   0.0306       N/A    0.8421
+2   0.3     MUTAG   0.0334       N/A    0.8684
+3   0.4     MUTAG   0.0181       N/A    0.8421
+4   0.5     MUTAG   0.0331       N/A    0.8421
+5   0.6     MUTAG   0.0346       N/A    0.8158
+6   0.7     MUTAG   0.0359       N/A    0.8421
+7   0.8     MUTAG   0.0364       N/A    0.8421
+8   0.9     MUTAG   0.0184       N/A    0.8421
+9   0.1  PROTEINS   0.1311       N/A    0.6951
+10  0.2  PROTEINS   0.2255       N/A    0.6323
+11  0.3  PROTEINS   0.1464       N/A    0.6861
+12  0.4  PROTEINS   0.1509       N/A    0.7354
+13  0.5  PROTEINS   0.1587       N/A    0.6726
+14  0.6  PROTEINS   0.1556       N/A    0.7040
+15  0.7  PROTEINS   0.1443       N/A    0.7040
+16  0.8  PROTEINS   0.1437       N/A    0.7175
+17  0.9  PROTEINS   0.1487       N/A    0.7175
+18  0.1   ENZYMES   0.1102       N/A    0.2667
+19  0.2   ENZYMES   0.0627       N/A    0.2667
+20  0.3   ENZYMES   0.0636       N/A    0.2667
+21  0.4   ENZYMES   0.0662       N/A    0.3500
+22  0.5   ENZYMES   0.0752       N/A    0.2667
+23  0.6   ENZYMES   0.1193       N/A    0.2750
+24  0.7   ENZYMES   0.0873       N/A    0.3083
+25  0.8   ENZYMES   0.1268       N/A    0.3250
+26  0.9   ENZYMES   0.1329       N/A    0.2917

@@ -1,0 +1,187 @@
+Using device: cpu
+Dataset: MUTAG, Number of classes: 2, Number of features: 7
+For MUTAG dataset with k=1:
+k=1, test acc: 0.7105263157894737, time/epoch: 0.0304s
+For MUTAG dataset with k=2:
+k=2, test acc: 0.6052631578947368, time/epoch: 0.0224s
+For MUTAG dataset with k=3:
+k=3, test acc: 0.6578947368421053, time/epoch: 0.0239s
+For MUTAG dataset with k=4:
+k=4, test acc: 0.7105263157894737, time/epoch: 0.0382s
+For MUTAG dataset with k=5:
+k=5, test acc: 0.6578947368421053, time/epoch: 0.0383s
+For MUTAG dataset with k=6:
+k=6, test acc: 0.7105263157894737, time/epoch: 0.0212s
+For MUTAG dataset with k=7:
+k=7, test acc: 0.5789473684210527, time/epoch: 0.0386s
+For MUTAG dataset with k=8:
+k=8, test acc: 0.631578947368421, time/epoch: 0.0224s
+For MUTAG dataset with k=9:
+k=9, test acc: 0.7368421052631579, time/epoch: 0.0292s
+For MUTAG dataset with k=10:
+k=10, test acc: 0.6842105263157895, time/epoch: 0.0216s
+For MUTAG dataset with k=11:
+k=11, test acc: 0.7631578947368421, time/epoch: 0.0215s
+For MUTAG dataset with k=12:
+k=12, test acc: 0.6842105263157895, time/epoch: 0.0209s
+For MUTAG dataset with k=13:
+k=13, test acc: 0.7105263157894737, time/epoch: 0.0207s
+For MUTAG dataset with k=14:
+k=14, test acc: 0.7368421052631579, time/epoch: 0.0191s
+For MUTAG dataset with k=15:
+k=15, test acc: 0.7368421052631579, time/epoch: 0.0189s
+For MUTAG dataset with k=16:
+k=16, test acc: 0.5789473684210527, time/epoch: 0.0204s
+For MUTAG dataset with k=17:
+k=17, test acc: 0.631578947368421, time/epoch: 0.0197s
+For MUTAG dataset with k=18:
+k=18, test acc: 0.7368421052631579, time/epoch: 0.0212s
+For MUTAG dataset with k=19:
+k=19, test acc: 0.7894736842105263, time/epoch: 0.0370s
+For MUTAG dataset with k=20:
+k=20, test acc: 0.631578947368421, time/epoch: 0.0192s
+Using device: cpu
+Dataset: PROTEINS, Number of classes: 2, Number of features: 3
+For PROTEINS dataset with k=1:
+k=1, test acc: 0.7399103139013453, time/epoch: 0.1690s
+For PROTEINS dataset with k=2:
+k=2, test acc: 0.7174887892376681, time/epoch: 0.2386s
+For PROTEINS dataset with k=3:
+k=3, test acc: 0.726457399103139, time/epoch: 0.2694s
+For PROTEINS dataset with k=4:
+k=4, test acc: 0.7174887892376681, time/epoch: 0.2351s
+For PROTEINS dataset with k=5:
+k=5, test acc: 0.695067264573991, time/epoch: 0.2399s
+For PROTEINS dataset with k=6:
+k=6, test acc: 0.7174887892376681, time/epoch: 0.2550s
+For PROTEINS dataset with k=7:
+k=7, test acc: 0.7309417040358744, time/epoch: 0.2673s
+For PROTEINS dataset with k=8:
+k=8, test acc: 0.7040358744394619, time/epoch: 0.1962s
+For PROTEINS dataset with k=9:
+k=9, test acc: 0.7219730941704036, time/epoch: 0.1989s
+For PROTEINS dataset with k=10:
+k=10, test acc: 0.7443946188340808, time/epoch: 0.2016s
+For PROTEINS dataset with k=11:
+k=11, test acc: 0.7085201793721974, time/epoch: 0.2014s
+For PROTEINS dataset with k=12:
+k=12, test acc: 0.6995515695067265, time/epoch: 0.2060s
+For PROTEINS dataset with k=13:
+k=13, test acc: 0.7130044843049327, time/epoch: 0.2218s
+For PROTEINS dataset with k=14:
+k=14, test acc: 0.6995515695067265, time/epoch: 0.2287s
+For PROTEINS dataset with k=15:
+k=15, test acc: 0.7085201793721974, time/epoch: 0.2321s
+For PROTEINS dataset with k=16:
+k=16, test acc: 0.7309417040358744, time/epoch: 0.2208s
+For PROTEINS dataset with k=17:
+k=17, test acc: 0.6995515695067265, time/epoch: 0.3100s
+For PROTEINS dataset with k=18:
+k=18, test acc: 0.7085201793721974, time/epoch: 0.2266s
+For PROTEINS dataset with k=19:
+k=19, test acc: 0.7399103139013453, time/epoch: 0.2364s
+For PROTEINS dataset with k=20:
+k=20, test acc: 0.726457399103139, time/epoch: 0.2335s
+Using device: cpu
+Dataset: ENZYMES, Number of classes: 6, Number of features: 3
+For ENZYMES dataset with k=1:
+k=1, test acc: 0.44166666666666665, time/epoch: 0.0872s
+For ENZYMES dataset with k=2:
+k=2, test acc: 0.35833333333333334, time/epoch: 0.1395s
+For ENZYMES dataset with k=3:
+k=3, test acc: 0.44166666666666665, time/epoch: 0.1208s
+For ENZYMES dataset with k=4:
+k=4, test acc: 0.45, time/epoch: 0.1327s
+For ENZYMES dataset with k=5:
+k=5, test acc: 0.375, time/epoch: 0.1228s
+For ENZYMES dataset with k=6:
+k=6, test acc: 0.35833333333333334, time/epoch: 0.1141s
+For ENZYMES dataset with k=7:
+k=7, test acc: 0.4583333333333333, time/epoch: 0.0877s
+For ENZYMES dataset with k=8:
+k=8, test acc: 0.425, time/epoch: 0.0878s
+For ENZYMES dataset with k=9:
+k=9, test acc: 0.4, time/epoch: 0.0896s
+For ENZYMES dataset with k=10:
+k=10, test acc: 0.43333333333333335, time/epoch: 0.0948s
+For ENZYMES dataset with k=11:
+k=11, test acc: 0.475, time/epoch: 0.0973s
+For ENZYMES dataset with k=12:
+k=12, test acc: 0.4, time/epoch: 0.1486s
+For ENZYMES dataset with k=13:
+k=13, test acc: 0.45, time/epoch: 0.0931s
+For ENZYMES dataset with k=14:
+k=14, test acc: 0.425, time/epoch: 0.0909s
+For ENZYMES dataset with k=15:
+k=15, test acc: 0.4083333333333333, time/epoch: 0.0894s
+For ENZYMES dataset with k=16:
+k=16, test acc: 0.43333333333333335, time/epoch: 0.0890s
+For ENZYMES dataset with k=17:
+k=17, test acc: 0.4166666666666667, time/epoch: 0.0912s
+For ENZYMES dataset with k=18:
+k=18, test acc: 0.475, time/epoch: 0.0915s
+For ENZYMES dataset with k=19:
+k=19, test acc: 0.35, time/epoch: 0.0936s
+For ENZYMES dataset with k=20:
+k=20, test acc: 0.35833333333333334, time/epoch: 0.1538s
+     k   dataset  s/epoch memory_MB  accuracy
+0    1     MUTAG   0.0304       N/A    0.7105
+1    2     MUTAG   0.0224       N/A    0.6053
+2    3     MUTAG   0.0239       N/A    0.6579
+3    4     MUTAG   0.0382       N/A    0.7105
+4    5     MUTAG   0.0383       N/A    0.6579
+5    6     MUTAG   0.0212       N/A    0.7105
+6    7     MUTAG   0.0386       N/A    0.5789
+7    8     MUTAG   0.0224       N/A    0.6316
+8    9     MUTAG   0.0292       N/A    0.7368
+9   10     MUTAG   0.0216       N/A    0.6842
+10  11     MUTAG   0.0215       N/A    0.7632
+11  12     MUTAG   0.0209       N/A    0.6842
+12  13     MUTAG   0.0207       N/A    0.7105
+13  14     MUTAG   0.0191       N/A    0.7368
+14  15     MUTAG   0.0189       N/A    0.7368
+15  16     MUTAG   0.0204       N/A    0.5789
+16  17     MUTAG   0.0197       N/A    0.6316
+17  18     MUTAG   0.0212       N/A    0.7368
+18  19     MUTAG   0.0370       N/A    0.7895
+19  20     MUTAG   0.0192       N/A    0.6316
+20   1  PROTEINS   0.1690       N/A    0.7399
+21   2  PROTEINS   0.2386       N/A    0.7175
+22   3  PROTEINS   0.2694       N/A    0.7265
+23   4  PROTEINS   0.2351       N/A    0.7175
+24   5  PROTEINS   0.2399       N/A    0.6951
+25   6  PROTEINS   0.2550       N/A    0.7175
+26   7  PROTEINS   0.2673       N/A    0.7309
+27   8  PROTEINS   0.1962       N/A    0.7040
+28   9  PROTEINS   0.1989       N/A    0.7220
+29  10  PROTEINS   0.2016       N/A    0.7444
+30  11  PROTEINS   0.2014       N/A    0.7085
+31  12  PROTEINS   0.2060       N/A    0.6996
+32  13  PROTEINS   0.2218       N/A    0.7130
+33  14  PROTEINS   0.2287       N/A    0.6996
+34  15  PROTEINS   0.2321       N/A    0.7085
+35  16  PROTEINS   0.2208       N/A    0.7309
+36  17  PROTEINS   0.3100       N/A    0.6996
+37  18  PROTEINS   0.2266       N/A    0.7085
+38  19  PROTEINS   0.2364       N/A    0.7399
+39  20  PROTEINS   0.2335       N/A    0.7265
+40   1   ENZYMES   0.0872       N/A    0.4417
+41   2   ENZYMES   0.1395       N/A    0.3583
+42   3   ENZYMES   0.1208       N/A    0.4417
+43   4   ENZYMES   0.1327       N/A    0.4500
+44   5   ENZYMES   0.1228       N/A    0.3750
+45   6   ENZYMES   0.1141       N/A    0.3583
+46   7   ENZYMES   0.0877       N/A    0.4583
+47   8   ENZYMES   0.0878       N/A    0.4250
+48   9   ENZYMES   0.0896       N/A    0.4000
+49  10   ENZYMES   0.0948       N/A    0.4333
+50  11   ENZYMES   0.0973       N/A    0.4750
+51  12   ENZYMES   0.1486       N/A    0.4000
+52  13   ENZYMES   0.0931       N/A    0.4500
+53  14   ENZYMES   0.0909       N/A    0.4250
+54  15   ENZYMES   0.0894       N/A    0.4083
+55  16   ENZYMES   0.0890       N/A    0.4333
+56  17   ENZYMES   0.0912       N/A    0.4167
+57  18   ENZYMES   0.0915       N/A    0.4750
+58  19   ENZYMES   0.0936       N/A    0.3500
+59  20   ENZYMES   0.1538       N/A    0.3583
