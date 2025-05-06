@@ -1,9 +1,3 @@
-# robust_analysis.py
-# ----------------
-# Improved empirical robustness evaluation for GNN pooling variants on TUDatasets
-# using random edge removal and feature noise with multiple runs for statistical significance.
-# Integrates with your existing `model.py` definitions and main.py setup.
-
 import os
 import numpy as np
 import pandas as pd
@@ -18,17 +12,12 @@ from model import (
 )
 from tqdm import tqdm
 
-# --------------------
-# 1) Perturbation functions
-# --------------------
-
 def drop_edges(data, rho):
     """
     Randomly remove a fraction rho of edges from the graph.
     data: PyG Data object
     rho: fraction of edges to drop (0 <= rho < 1)
     """
-    # convert edge_index to list of edges
     E = data.edge_index.t()  # [E, 2]
     m = E.size(0)
     keep = torch.randperm(m)[:int((1 - rho) * m)]
@@ -54,11 +43,9 @@ def drop_nodes(data, rho):
     """
     num_nodes = data.num_nodes
     
-    # Create a mask for nodes to keep
     mask = torch.rand(num_nodes) > rho
     new_x = data.x[mask]
     
-    # Remap edge_index to account for removed nodes
     node_map = torch.zeros(num_nodes, dtype=torch.long, device=data.edge_index.device)
     node_map[mask] = torch.arange(mask.sum(), device=data.edge_index.device)
     new_edge_index = data.edge_index[:, mask[data.edge_index[0]] & mask[data.edge_index[1]]]
@@ -67,9 +54,6 @@ def drop_nodes(data, rho):
     return data.__class__(
         x=new_x, edge_index=new_edge_index, y=data.y, batch=data.batch
     )
-# --------------------
-# 2) Robustness evaluation
-# --------------------
 
 def evaluate(model, loader, device):
     model.eval()
@@ -79,7 +63,6 @@ def evaluate(model, loader, device):
         for data in loader:
             data = data.to(device)
             out = model(data.x, data.edge_index, data.batch)
-            # unpack if tuple
             if isinstance(out, tuple):
                 out = out[0]
             pred = out.argmax(dim=1)
@@ -110,7 +93,6 @@ def robustness_curve(model, test_ds, device, perturb_fn, levels, n_runs=10, batc
     for lvl in levels:
         run_accs = []
         for run in range(n_runs):
-            # apply perturbation transform with different random seeds for each run
             perturbed = [perturb_fn(d.clone(), lvl) for d in test_ds]
             loader = DataLoader(perturbed, batch_size=batch_size)
             acc = evaluate(model, loader, device)
@@ -120,10 +102,6 @@ def robustness_curve(model, test_ds, device, perturb_fn, levels, n_runs=10, batc
         std_accs.append(np.std(run_accs))
     
     return mean_accs, std_accs
-
-# --------------------
-# 3) Runner
-# --------------------
 
 def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness_results.csv'):
     """
@@ -136,14 +114,12 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
     print(f"Using device: {device}")
     print(f"Running robustness analysis on {dataset_name} with {n_runs} runs per level")
 
-    # load and split dataset like in main.py
     dataset = TUDataset(root='data', name=dataset_name).shuffle()
     split = int(0.8 * len(dataset))
     train_ds, test_ds = dataset[:split], dataset[split:]
     
     print(f"Dataset loaded: {len(dataset)} graphs ({len(train_ds)} train, {len(test_ds)} test)")
 
-    # instantiate variants (choose a representative set)
     variants = {
         'dmon':    GNNDMoN(dataset.num_features, 64, dataset.num_classes, k=10, dropout=0.2),
         'ecpool':  GNNECPool(dataset.num_features, 64, dataset.num_classes, ratio=0.5),
@@ -153,7 +129,6 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
         'global':  GNNGlobal(dataset.num_features, 64, dataset.num_classes, pool='mean')
     }
 
-    # load pre-trained weights if available
     for name, model in variants.items():
         path = f'trained_models/{dataset_name}_{name}_model.pth'
         if os.path.exists(path):
@@ -163,7 +138,6 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
             print(f"Warning: No pre-trained weights found at {path}")
         model.to(device)
 
-    # define perturbations and levels (more granular levels for smoother curves)
     perturbations = {
         'edge_drop': drop_edges,
         'feat_noise': noisy_features,
@@ -171,12 +145,11 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
 
     }
     levels = {
-        'edge_drop': np.linspace(0.0, 0.3, 16),  # More fine-grained levels
-        'feat_noise': np.linspace(0.0, 0.5, 16),   # More fine-grained levels
-        'node_drop': np.linspace(0.0, 0.3, 16)   # More fine-grained levels
+        'edge_drop': np.linspace(0.0, 0.3, 16), 
+        'feat_noise': np.linspace(0.0, 0.5, 16),   
+        'node_drop': np.linspace(0.0, 0.3, 16)   
     }
 
-    # collect results
     rows = []
     for pert_name, fn in perturbations.items():
         print(f"\nRunning {pert_name} experiments:")
@@ -196,12 +169,11 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
                     'std_accuracy': float(std_accs[i])
                 })
                 
-    # save
+
     df = pd.DataFrame(rows)
     df.to_csv(out_csv, index=False)
     print(f"\nRobustness results written to {out_csv}")
     
-    # print summary
     summary = df.groupby(['model', 'perturbation']).agg(
         baseline_acc=('mean_accuracy', lambda x: x.iloc[0]),
         worst_acc=('mean_accuracy', 'min'),
@@ -211,7 +183,6 @@ def run_all(dataset_name='PROTEINS', n_runs=10, device=None, out_csv='robustness
     print("\nSummary of robustness results:")
     print(summary)
     
-    # Generate visualization if matplotlib is available
     try:
         import matplotlib.pyplot as plt
         import seaborn as sns
